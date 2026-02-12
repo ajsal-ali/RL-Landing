@@ -1,0 +1,16 @@
+# Core dependencies
+mavsdk>=1.4.0
+numpy>=1.21.0
+opencv-python>=4.5.0
+
+# YOLO and ML dependencies
+ultralytics>=8.0.0
+torch>=1.12.0
+torchvision>=0.13.0
+
+# Gazebo transport (if available via pip, otherwise install manually)
+# gz-transport13
+# gz-msgs10
+
+# Additional utilities
+asyncio-mqtt>=0.11.0  # If needed for additional communication
