@@ -51,7 +51,9 @@ Discretization (configurable in `discretizer.py`):
 - confidence: 2 bins
 - dx, dy: 3 bins each
 
-This leads to a large theoretical state space; the implementation stores Q-values sparsely.
+This leads to a large theoretical state space (209,952 states); the implementation stores Q-values sparsely.
+
+**📚 For detailed explanation of state space and discretization, see [STATE_SPACE.md](./STATE_SPACE.md)**
 
 ---
 
