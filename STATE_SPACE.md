@@ -95,8 +95,9 @@ bin_index = int(clip(normalized_value * n_bins, 0, n_bins - 1))
 ### Stage 3: State Encoding
 Discretized features are encoded into a string key:
 ```
-state_key = "pitch_roll_vx_vy_altitude_cx_cy_conf_dx_dy"
-Example: "1_1_1_2_2_3_3_1_1_1"
+# Format: "pitch_roll_vx_vy_altitude_cx_cy_conf_dx_dy"
+# where each value is a bin index (integer)
+Example state_key: "1_1_1_2_2_3_3_1_1_1"
 ```
 
 This string serves as the key in the sparse Q-table dictionary.

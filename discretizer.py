@@ -97,8 +97,8 @@ def discretize_features(normalized_features: Dict[str, float]) -> Dict[str, int]
     for key, value in normalized_features.items():
         if key == 'conf':
             # Custom threshold-based binning for confidence
-            # Low confidence [0, 0.3) -> bin 0 (not detected reliably)
-            # High confidence [0.3, 1.0] -> bin 1 (detected reliably)
+            # Low confidence [0, 0.3) -> bin 0 (low confidence detection)
+            # High confidence [0.3, 1.0] -> bin 1 (high confidence detection)
             if value < 0.3:
                 discretized[key] = 0
             else:
