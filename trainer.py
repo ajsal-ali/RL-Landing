@@ -171,7 +171,7 @@ class QLearningTrainer:
             'avg_confidence': avg_confidence,
             'final_distance': final_distance,
             'epsilon': epsilon,
-            'q_table_size': len(self.q_table.q_table),
+            'q_table_size': self.q_table.size,
             'avg_q_delta': np.mean(q_deltas) if q_deltas else 0.0
         }
 
@@ -207,7 +207,7 @@ class QLearningTrainer:
                     print(f"   Avg reward (last 50): {avg_reward:.1f}")
                     print(f"   Total steps: {self.total_steps:,}")
                     print(f"   Epsilon: {self.get_epsilon():.3f}")
-                    print(f"   Q-table size: {len(self.q_table.q_table):,}")
+                    print(f"   Q-table size: {self.q_table.size:,}")
                     print(f"   Elapsed: {elapsed/60:.1f}min")
 
                 # Checkpoint Q-table
