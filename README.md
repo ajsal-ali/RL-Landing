@@ -1,13 +1,13 @@
 # Reinforcement Learning-based Autonomous Multi-Rotor Landing on Stationary Platforms
 
-A minimal Python project that trains a tabular Q-learning agent to land a drone on a stationary platform using onboard sensing (images + telemetry).
+A minimal Python project that trains a tabular Double Q-Learning agent to land a drone on a stationary platform using onboard sensing (images + telemetry).
 
 ## Overview
 
-This repository implements a tabular Q-learning agent that controls a drone in PX4 SITL + Gazebo. The agent uses discretized onboard telemetry and YOLO visual detections to navigate, approach, and land on a stationary platform.
+This repository implements a tabular Double Q-Learning agent that controls a drone in PX4 SITL + Gazebo. The agent uses discretized onboard telemetry and YOLO visual detections to navigate, approach, and land on a stationary platform.
 
 Key goals:
-- Sparse Q-table to keep memory low
+- Sparse Q-tables to keep memory low
 - Use MAVSDK for flight control
 - YOLO for onboard visual detections
 - Altitude-based episodes that end when the drone descends to just above the landing pad
@@ -22,7 +22,7 @@ Key goals:
 
 ## Features (high level)
 
-- Tabular Q-learning with a sparse dict Q-table (memory only used for visited state-action pairs)
+- Tabular Double Q-Learning (Hasselt, 2010) with two sparse dict Q-tables Q_A and Q_B to reduce overestimation bias (memory only used for visited state-action pairs)
 - YOLO detection interface that subscribes to Gazebo camera topic and returns normalized center/confidence
 - MAVSDK offboard velocity control with position fallback and safety clamping
 - Altitude-based episodes that automatically terminate when the drone reaches a defined minimum altitude (just above the landing pad)
@@ -77,7 +77,7 @@ This leads to a large theoretical state space (209,952 states); the implementati
 
 ---
 
-## Q-learning configuration
+## Double Q-Learning configuration
 
 Default hyperparameters (see `trainer.py` `TrainingConfig`):
 - alpha (learning rate): 0.1
@@ -145,7 +145,7 @@ By default the test script loads `checkpoints/qtable_final.pkl` (or a named chec
 ```
 ├── env.py               # Environment wrapper
 ├── discretizer.py       # Feature normalization and discretization
-├── qlearn.py            # Sparse Q-table implementation
+├── qlearn.py            # Sparse Double Q-table (Q_A, Q_B) implementation
 ├── trainer.py           # Training loop and scheduling
 ├── test.py              # Run greedy policy using saved Q-table
 ├── yolo_interface.py    # YOLO detection (Gazebo camera subscriber)
